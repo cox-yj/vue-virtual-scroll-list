@@ -179,6 +179,11 @@
 
         mounted: function () {
             this.setScrollTop(this.start * this.size)
+            this.$el.getElementsByTagName('div')[0].mCustomScrollbar({
+                mouseWheel: true,
+                theme: 'dark',
+                callbacks: value
+              })
         },
 
         render: function (createElement) {
