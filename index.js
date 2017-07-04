@@ -12,6 +12,11 @@
     if (typeof Vue2 === 'object' && typeof Vue2.default === 'function') {
         Vue2 = Vue2.default
     }
+    import Vue from 'vue'
+import $ from 'jquery'
+import 'jquery-mousewheel'
+import 'malihu-custom-scrollbar-plugin'
+import '../assets/css/jquery.mCustomScrollbar.css'
 
     var innerns = 'vue-virtual-scroll-list'
 
@@ -179,6 +184,13 @@
 
         mounted: function () {
             this.setScrollTop(this.start * this.size)
+             Vue.nextTick(() => {
+              this.$el.getElementsByTagName('div')[0].mCustomScrollbar({
+                mouseWheel: true,
+                theme: 'dark',
+                callbacks: 2
+              })
+            })
         },
 
         render: function (createElement) {
