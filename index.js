@@ -193,7 +193,7 @@
                     // 滚动到底部的时调用
                     // onTotalScroll: function(){},
                     // 正在滚动时调用
-                    whileScrolling: handleScroll()
+                    whileScrolling: that.handleScroll()
                 }
               })
         },
