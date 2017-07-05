@@ -77,7 +77,6 @@
             // 处理滚动的事件
             handleScroll: function (e) {
                 var scrollTop = this.$refs.container.scrollTop
-
                 this.updateZone(scrollTop)
 
                 if (this.onscroll) {
@@ -181,19 +180,18 @@
         mounted: function () {
             var that = this
             this.setScrollTop(this.start * this.size)
-            $(this.$el.getElementsByTagName('div')[0]).mCustomScrollbar({
+            $(this.$el).mCustomScrollbar({
                 mouseWheel: true,
                 theme: 'dark',
                 // 设置滚动条滚动时触发的事件
                 callbacks: {
-                    // 滚动时间开始的时候执行
-                    // onScrollStart: function(){},
-                    // 滚动中执行
-                    // onScroll: function(){},
-                    // 滚动到底部的时调用
-                    // onTotalScroll: function(){},
+                    onScroll: function () {
+                        that.updateZone(-this.mcs.top)
+                    },
                     // 正在滚动时调用
-                    whileScrolling: that.handleScroll()
+                    whileScrolling: function () {
+                        that.updateZone(-this.mcs.top)
+                    }
                 }
             })
         },
