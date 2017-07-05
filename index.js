@@ -74,6 +74,7 @@
         },
 
         methods: {
+            // 处理滚动的事件
             handleScroll: function (e) {
                 var scrollTop = this.$refs.container.scrollTop
 
