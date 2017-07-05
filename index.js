@@ -27,16 +27,16 @@
             onscroll: Function
         },
 
-        // An object helping to calculate.
+        // 一个帮助计算的对象。
         delta: {
-            start: 0, // Start index.
-            end: 0, // End index.
-            total: 0, // All items count.
-            keeps: 0, // Nums of item keeping in real dom.
-            viewHeight: 0, // Container wrapper viewport height.
-            allPadding: 0, // All padding of not-render-yet doms.
+            start: 0, // Start index. 开始
+            end: 0, // End index. 结束
+            total: 0, // All items count. 所有items
+            keeps: 0, // Nums of item keeping in real dom.在实际的dom中保持数字的Nums
+            viewHeight: 0, // Container wrapper viewport height.  容器高度
+            allPadding: 0, // All padding of not-render-yet doms. 
             paddingTop: 0, // Container wrapper real padding-top.
-            scrollTop: 0, // Store scrollTop.
+            scrollTop: 0, // Store scrollTop. 
             scrollDirect: 'd', // Scroll direction.
             fireTime: 0 // Store last event time avoiding compact fire.
         },
@@ -179,11 +179,22 @@
         },
 
         mounted: function () {
+            var that = this
             this.setScrollTop(this.start * this.size)
             this.$el.getElementsByTagName('div')[0].mCustomScrollbar({
                 mouseWheel: true,
                 theme: 'dark',
-                callbacks: value
+                // 设置滚动条滚动时触发的事件
+                callbacks: {
+                    // 滚动时间开始的时候执行
+                    // onScrollStart: function(){},
+                    // 滚动中执行
+                    // onScroll: function(){},
+                    // 滚动到底部的时调用
+                    // onTotalScroll: function(){},
+                    // 正在滚动时调用
+                    whileScrolling: handleScroll()
+                }
               })
         },
 
