@@ -1,14 +1,14 @@
 (function (root, ns, factory) {
     if (typeof exports === 'object' && typeof module === 'object') {
-        module.exports = factory(require('vue'))
+        module.exports = factory(require('vue'), require('jquery'))
     } else if (typeof define === 'function' && define.amd) {
-        define(['vue'], factory)
+        define(['vue', 'jquery'], factory)
     } else if (typeof exports === 'object') {
-        exports[ns] = factory(require('vue'))
+        exports[ns] = factory(require('vue'), require('jquery'))
     } else {
-        root[ns] = factory(root['Vue'])
+        root[ns] = factory(root['Vue'], root['jquery'])
     }
-})(this, 'VirutalScrollList', function (Vue2) {
+})(this, 'VirutalScrollList', function (Vue2, $) {
     if (typeof Vue2 === 'object' && typeof Vue2.default === 'function') {
         Vue2 = Vue2.default
     }
@@ -181,7 +181,7 @@
         mounted: function () {
             var that = this
             this.setScrollTop(this.start * this.size)
-            this.$el.getElementsByTagName('div')[0].mCustomScrollbar({
+            $(this.$el.getElementsByTagName('div')[0]).mCustomScrollbar({
                 mouseWheel: true,
                 theme: 'dark',
                 // 设置滚动条滚动时触发的事件
@@ -195,7 +195,7 @@
                     // 正在滚动时调用
                     whileScrolling: that.handleScroll()
                 }
-              })
+            })
         },
 
         render: function (createElement) {
@@ -213,14 +213,14 @@
                     'scroll': this.handleScroll
                 }
             }, [
-                createElement(this.wtag, {
-                    'style': {
-                        'display': 'block',
-                        'padding-top': delta.paddingTop + 'px',
-                        'padding-bottom': delta.allPadding - delta.paddingTop + 'px'
-                    }
-                }, showList)
-            ])
+                    createElement(this.wtag, {
+                        'style': {
+                            'display': 'block',
+                            'padding-top': delta.paddingTop + 'px',
+                            'padding-bottom': delta.allPadding - delta.paddingTop + 'px'
+                        }
+                    }, showList)
+                ])
         }
     })
 })

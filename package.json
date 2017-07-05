@@ -26,8 +26,8 @@
   "author": "TANG",
   "license": "MIT",
   "devDependencies": {
-    "babel-core": "^6.24.0",
-    "babel-loader": "^6.4.0",
+    "babel-core": "^6.25.0",
+    "babel-loader": "^6.4.1",
     "babel-preset-env": "^1.5.1",
     "css-loader": "^0.27.2",
     "eslint": "^4.1.1",
@@ -36,9 +36,14 @@
     "eslint-plugin-node": "^5.1.0",
     "eslint-plugin-promise": "^3.5.0",
     "eslint-plugin-standard": "^3.0.1",
+    "jquery-mousewheel": "^3.1.13",
+    "malihu-custom-scrollbar-plugin": "^3.1.5",
     "vue": "^2.2.2",
     "vue-loader": "^11.1.4",
     "vue-template-compiler": "^2.2.2",
-    "webpack": "^2.2.1"
+    "webpack": "^2.6.1"
+  },
+  "dependencies": {
+    "jquery": "^3.2.1"
   }
 }
