@@ -70,10 +70,25 @@
 
                 this.$forceUpdate()
                 Vue2.nextTick(this.setScrollTop.bind(this, scrollTop))
+            },
+            remain: function (newVal, oldVal) {
+                // console.log(newVal + ": " + oldVal + ": " + this.remain)
+                this.recalcSize(newVal)
+                this.$forceUpdate()
             }
         },
 
         methods: {
+            recalcSize: function (remain) {
+                var remains = remain || this.remain
+                var delta = this.$options.delta
+                var benchs = Math.round(remains / 2)
+
+                delta.start = this.start >= remains ? this.start : 0
+                delta.end = this.start + remains + benchs
+                delta.keeps = remains + benchs
+                delta.viewHeight = this.size * remains
+            },
             // 处理滚动的事件
             handleScroll: function (e) {
                 var scrollTop = this.$refs.container.scrollTop
@@ -185,9 +200,14 @@
                 theme: 'dark',
                 // 设置滚动条滚动时触发的事件
                 callbacks: {
+                    // 滚动时间开始的时候执行
+                    // onScrollStart: function(){},
+                    // 滚动中执行
                     onScroll: function () {
                         that.updateZone(-this.mcs.top)
                     },
+                    // 滚动到底部的时调用
+                    // onTotalScroll: function(){},
                     // 正在滚动时调用
                     whileScrolling: function () {
                         that.updateZone(-this.mcs.top)
